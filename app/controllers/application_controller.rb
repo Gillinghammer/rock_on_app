@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user
+  helper_method :current_user, :current_role
 
   private
   begin
@@ -10,4 +10,5 @@ class ApplicationController < ActionController::Base
       session[:user_id] = nil
     end
   end
+  
 end

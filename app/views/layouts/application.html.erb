@@ -16,7 +16,7 @@
   </div>
   <% end %>
   <% if current_user %>
-  <p>Hello <%= current_user.name %></p>
+  <p>Hello <%= current_user.name %>, you are registered as a <%= current_user.role %></p>
   <% end %>
 <%= yield %>
 <p>
