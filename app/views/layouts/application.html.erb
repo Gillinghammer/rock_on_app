@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <p>
+      <%= link_to 'login', login_path %>
+    </p>
+<% flash.each do |name, msg| %>
+  <div class="flash-message flash-message-<%= name %>">
+    <%= msg %>
+  </div>
+  <% end %>
+  <% if current_user %>
+  <p>Hello <%= current_user.name %></p>
+  <% end %>
 <%= yield %>
-
+<p>
+    <%= link_to 'log me out!', logout_path %>
+  </p>
 </body>
 </html>
