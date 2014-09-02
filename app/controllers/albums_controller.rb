@@ -2,6 +2,7 @@ class AlbumsController < ApplicationController
   def new
     #TODO Authentication to make sure user is logged in
     @album = Album.new
+
   end
 
   def create

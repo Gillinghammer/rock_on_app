@@ -11,11 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140901153415) do
+ActiveRecord::Schema.define(:version => 20140902082815) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "bands", :force => true do |t|
+    t.string   "name"
+    t.string   "genre"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -25,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20140901153415) do
     t.integer  "album_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "track"
   end
 
   create_table "users", :force => true do |t|
@@ -36,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20140901153415) do
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "avatar"
   end
 
 end

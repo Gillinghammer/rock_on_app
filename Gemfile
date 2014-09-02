@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.19'
-
+gem 'carrierwave', '0.9.0'
+gem 'rmagick'
+gem 'better_errors'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
