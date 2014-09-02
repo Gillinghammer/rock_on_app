@@ -7,20 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p>
-      <%= link_to 'login', login_path %>
-    </p>
-<% flash.each do |name, msg| %>
-  <div class="flash-message flash-message-<%= name %>">
-    <%= msg %>
-  </div>
-  <% end %>
-  <% if current_user %>
-  <p>Hello <%= current_user.name %>, you are registered as a <%= current_user.role %></p>
-  <% end %>
+  <nav>
+    <ul>
+      <li>
+        <%= link_to 'Rock On!', root_path %>
+      </li>
+      <li>
+        <%= link_to "Sign Up", new_user_path %>
+      </li>
+      <li>
+        <%= link_to 'Login', login_path %>
+      </li>
+      <li>
+        <%= link_to 'Log Out!', logout_path %>
+      </li>
+    </ul>
+  </nav>
+
 <%= yield %>
-<p>
-    <%= link_to 'log me out!', logout_path %>
-  </p>
+<footer>
+  <% flash.each do |name, msg| %>
+    <div class="flash-message flash-message-<%= name %>">
+      <%= msg %>
+    </div>
+    <% end %>
+    <% if current_user %>
+    <p>Hello <%= current_user.name %>, you are registered as a <%= current_user.role %></p>
+    <% end %>
+</footer>
 </body>
 </html>

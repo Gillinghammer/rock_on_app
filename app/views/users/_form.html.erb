@@ -20,18 +20,7 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.select :role, ['Fan', 'Band'] %>
-  </div>
-  <div class="field">
-    <%= f.label :hometown %><br />
-    <%= f.text_field :hometown %>
-  </div>
-  <div class="field">
-    <%= f.label :band %><br />
-    <%= f.text_field :band %>
-  </div>
-  <div class="field">
-      <%= f.label :avatar %><br />
+      <%= f.label :image %><br />
       <%= f.file_field :avatar %>
   </div>
   <div class="field">
@@ -46,3 +35,6 @@
     <%= f.submit %>
   </div>
 <% end %>
+<div class="profile_image">
+  <%= image_tag(@user.avatar) unless @user.avatar.blank? %>
+</div>

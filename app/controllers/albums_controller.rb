@@ -2,12 +2,11 @@ class AlbumsController < ApplicationController
   def new
     #TODO Authentication to make sure user is logged in
     @album = Album.new
-
   end
 
   def create
     @album = Album.new(params[:album])
-    @album.user_id = current_user.id
+    # @album.user_id = current_user.id
 
     if @album.save
       redirect_to albums_path, notice: "Album Created."
@@ -18,7 +17,11 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-@album = Album.find(params[:id])
+    @album = Album.find(params[:id])
+  end
+
+  def show
+    @album = Album.find(params[:id])
   end
 
   def update

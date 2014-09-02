@@ -1,0 +1,11 @@
+<div class="RecentAlbums">
+  <h2>Recent Albums</h2>
+  <ul>
+  <% @recent_albums.each do |album| %>
+    <li>
+      <%= link_to album.name, album_path(album) %><br>  
+      <%= link_to album.band.name, band_path(album.band) %>
+    </li>
+  <% end %>
+  </ul>
+</div>

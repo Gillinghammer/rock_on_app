@@ -4,6 +4,9 @@ gem 'rails', '3.2.19'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
 gem 'better_errors'
+gem 'acts_as_commentable', '3.0.1'
+gem "binding_of_caller"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

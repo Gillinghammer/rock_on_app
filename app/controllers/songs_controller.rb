@@ -15,10 +15,9 @@ class SongsController < ApplicationController
   def show
     @song = Song.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @song }
-    end
+    #commentable
+    @comment = @song.comments.new
+
   end
 
   # GET /songs/new

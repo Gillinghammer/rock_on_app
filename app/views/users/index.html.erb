@@ -7,7 +7,6 @@
     <th>Password digest</th>
     <th>Role</th>
     <th>Hometown</th>
-    <th>Band</th>
     <th>Avatar</th>
     <th></th>
     <th></th>
@@ -21,7 +20,7 @@
     <td><%= user.password_digest %></td>
     <td><%= user.role %></td>
     <td><%= user.hometown %></td>
-    <td><%= user.band %></td>
+    
     <td><%= image_tag user.avatar, {width:150} %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

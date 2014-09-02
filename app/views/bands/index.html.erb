@@ -1,0 +1,15 @@
+<h1>Bands</h1>
+<ul>
+<% @bands.each do |band| %>
+  <li>
+    <%= band.name %>
+      <ul>
+        <% band.albums.each do |album| %>
+        <li>
+          <%=link_to album.name, album_path(album) %>
+        </li>
+        <% end %>
+      </ul>
+  </li>
+<% end %>
+</ul>

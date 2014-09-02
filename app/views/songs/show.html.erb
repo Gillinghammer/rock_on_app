@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
+<p><%= @song.album.band.try :name %>/<%= @song.album.try :name %><br><%= @song.name %><br><br><%= audio_tag(@song.track, autoplay: false, controls: true) %></p>
+<p>
+<% if current_user %>
+<%= form_for [@song, Comment.new ] do |f| %>
+  <%= f.hidden_field :commentable_id, value: @song.id %>
+  <%= f.hidden_field :commentable_type, value: 'Song' %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+<% end %>
+</p>
+<% end %>
+
+  <% @song.comments.each do |comment| %>
+  <p>
+  <%= comment.body %><br>
+  <%= comment.created_at %><br>
+  <% if current_user %>
+  <%= link_to "Delete Comment", [@song, comment], :method => :delete,:confirm=>'Are you sure?' unless current_user.id != comment.user_id %>
+  <% end %>
+  </p>
+  <% end %>
 
 
 <%= link_to 'Edit', edit_song_path(@song) %> |

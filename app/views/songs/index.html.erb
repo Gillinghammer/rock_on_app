@@ -1,31 +1,8 @@
-<h1>Listing songs</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Album</th>
-    <th>Band</th>
-    <th>Listen</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1>Songs</h1>
+<ul>
 <% @songs.each do |song| %>
-  <tr>
-    <td><%= song.name %></td>
-    <td><%= song.album.try :name %></td>
-    <td><%= song.album.user.try :band %></td>
-    <td><%= audio_tag(song.track, autoplay: false, controls: true) %></td>
-    <td><%= link_to 'Show', song %></td>
-    <td><%= link_to 'Edit', edit_song_path(song) %></td>
-    <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <li>
+    <%= song.album.band.name %>/<%= song.album.name %><br><%= link_to song.name, song_path(song) %><br><br><%= audio_tag(song.track, autoplay: false, controls: true) %>
+  </li><br>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Song', new_song_path %>
-
-
+</ul>

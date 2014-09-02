@@ -15,6 +15,9 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.collection_select :band_id, Band.all, :id, :name %>
+  </div>
   
     <%= f.submit %>
   </div>

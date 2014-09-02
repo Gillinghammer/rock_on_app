@@ -1,34 +1,31 @@
 <p id="notice"><%= notice %></p>
+<div class="profile_image">
+  <%= image_tag(@user.avatar) %>
+  <%= link_to "Edit Profile", edit_user_path(@user) %>
+  
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+<div class="Playlist">
+  <h2>Playlists</h2>
+  <ul>
+    <% @user.playlists.each do |playlist| %>
+    <li> 
+        <%= link_to playlist.name, playlist_path %> 
+    </li>
+    <% end %>
+  </ul>
+</div>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <b>Role:</b>
-  <%= @user.role %>
-</p>
-
-<p>
-  <b>Hometown:</b>
-  <%= @user.hometown %>
-</p>
-
-<p>
-  <b>Band:</b>
-  <%= @user.band %>
-</p>
+<div class="Albums">
+  <h2>Albums</h2>
+  <ul>
+    <% @user.band.albums.each do |album| %>
+    <li> 
+        <%= link_to album.name, album_path %> 
+    </li>
+    <% end %>
+  </ul>
+</div>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
