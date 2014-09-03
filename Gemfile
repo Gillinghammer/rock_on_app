@@ -6,6 +6,8 @@ gem 'rmagick'
 gem 'better_errors'
 gem 'acts_as_commentable', '3.0.1'
 gem "binding_of_caller"
+gem 'ransack'
+gem 'cancancan', '~> 1.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

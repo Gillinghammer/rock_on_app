@@ -1,12 +1,10 @@
+<div class="wrapper">
 <h1>Listing users</h1>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Password digest</th>
-    <th>Role</th>
-    <th>Hometown</th>
     <th>Avatar</th>
     <th></th>
     <th></th>
@@ -17,10 +15,6 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
-    <td><%= user.password_digest %></td>
-    <td><%= user.role %></td>
-    <td><%= user.hometown %></td>
-    
     <td><%= image_tag user.avatar, {width:150} %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
@@ -32,3 +26,5 @@
 <br />
 
 <%= link_to 'New User', new_user_path %>
+
+</div>

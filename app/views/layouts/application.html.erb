@@ -8,46 +8,57 @@
   <style type="text/css">
       
       body {
-        background-color: #ffeb00;
+        background-color: white;
       }
 
-    img {
-      width: 200px;
+    .band {
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+    }
+
+    .band img {
+      width: 100%;
+      height: 100%;
+      margin: 0px 0 0 0px; 
+
+    }
+
+    .PopularSongs {
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      max-width: 200px;
+      text-align: right;
     }
 
     .wrapper {
-      padding: 70px 25px;
+      padding: 70px 0px;
+      margin: 0 auto;
+      width: 850px;
     }
 
     .RecentAlbums {
       position: relative;
-      color: #333333
-    }
-
-    .RecentAlbums .album img {
-      position: relative;
-      display: inline-block;
-    }
-
-    .RecentAlbums .album .details {
-      position: relative;
-      display: inline-block;
-      vertical-align: top;
-      padding-left: 20px;
-    }
-
-    .details h2, h4 {
-      margin: 0;
-      padding: 0;
-    }
-
-    .details a:visited {
       color: #333333;
     }
 
-    .album {
-      padding-bottom: 20px;
+    .RecentAlbums img {
+          width: 250px;
+          border: 5px solid white;
+        }
+
+    .RecentAlbums a:hover img {
+          width: 250px;
+          border: 5px solid black;
+        }
+
+    .RecentAlbums .album  {
+      position: relative;
+      display: inline-block;
+      padding: 0 20px 20px 0;
     }
+
 
     nav {
       z-index: 10;
@@ -105,11 +116,13 @@
       <li>
         <%= link_to 'Logout', logout_path if current_user %>
       </li>
+      <li>
+        SEARCH
+      </li>
     </ul>
   </nav>
-<div class="wrapper">
 <%= yield %>
-</div>
+
 <footer>
   <% flash.each do |name, msg| %>
     <div class="flash-message flash-message-<%= name %>">

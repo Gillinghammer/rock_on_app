@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
-  # GET /songs
-  # GET /songs.json
+
+  load_and_authorize_resource
+
   def index
     @songs = Song.all
 
@@ -24,7 +25,6 @@ class SongsController < ApplicationController
   # GET /songs/new.json
   def new
     @song = Song.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @song }
@@ -43,11 +43,9 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
-        format.json { render json: @song, status: :created, location: @song }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+        redirect_to song_path(@song), notice: "Song Added!" #TODO Redirect to Album page
+        else
+          render "new"
       end
     end
   end

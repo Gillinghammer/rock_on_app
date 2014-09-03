@@ -1,38 +1,37 @@
+<div class="PopularSongs">
+  <h4>Most Talked About Tracks</h4>
+  <% @popular_songs.each do |song| %>
+    <div class="details">
+    <h4><%= link_to song.name, song_path(song) %> <%= song.comments.count %></h4>
+    </div>
+    <% end %>
+</div>
+
+<div class="wrapper">
+<div class="search">
+  <%= search_form_for @q do |f| %>
+      <%= f.text_field :name_cont, :placeholder => "Search Bands" %> <%= f.submit %>
+  <% end %>
+</div>
+
 <div class="RecentAlbums">
-  <h2>Recent Albums</h2>
-  
+  <h2>New Releases</h2>
   <% @recent_albums.each do |album| %>
     <div class="album">
-      <%= image_tag album.album_art %>
-      <div class="details">
-      <h2><%= link_to album.name, album_path(album) %></h2>
-      <h4><%= link_to album.band.name, band_path(album.band) %></h4>
-    </div>
+      <%= link_to "#{image_tag(album.album_art)}".html_safe, album_path(album) %>
     </div>
   <% end %>
-  
 </div>
 
 <div class="NewBands">
-  <h2>New Bands</h2>
-  
-  <% @recent_bands.each do |band| %>
-  <div class="album">
-    <%= image_tag band.band_art %>
+  <h2>Band Spotlight</h2>
+  <div class="band">
       <div class="details">
-      <h2><%= link_to band.name, band_path(band) %></h2>
+      <h2><%= link_to @newest_band.name, band_path(@newest_band) %></h2>
+      <%= link_to "#{image_tag(@newest_band.band_art)}".html_safe, band_path(@newest_band) %>
       </div>
       </div>
-  <% end %>
 
   <p><%= link_to "All Bands", bands_path %></p>
 </div>
-
-<div class="PopularSongs">
-  <h2>Popular Songs</h2>
-  <% @popular_songs.each do |song| %>
-    <div class="details">
-    <h2><%= link_to song.name, song_path(song) %></h2>
-    </div>
-    <% end %>
 </div>

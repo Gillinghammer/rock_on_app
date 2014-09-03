@@ -19,10 +19,6 @@
       <%= f.label :album_art %><br />
       <%= f.file_field :album_art %>
   </div>
-  <div class="field">
-    <%= f.collection_select :band_id, Band.all, :id, :name %>
-  </div>
-  
     <%= f.submit %>
   </div>
 <% end %>

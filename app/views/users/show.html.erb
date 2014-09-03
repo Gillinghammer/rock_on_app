@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper">
 <div class="profile_image">
   <%= image_tag(@user.avatar) %>
   <%= link_to "Edit Profile", edit_user_path(@user) %>
@@ -25,29 +25,45 @@
   <%= link_to 'New Playlist', new_playlist_path %>
 </div>
 
-<div class="Band">
-  <%= image_tag @user.band.band_art %>
-  <h2><%= @user.band.try :name %></h2>
-  <ul>
-    <% @user.band.albums.each do |album| %>
-    <li> 
-        <%= link_to album.name, album_path(album) %> 
-        <ul>
-          <% album.songs.each do |song| %>
-          <li>
-              <%= song.name %><br>
-              <%= audio_tag(song.track, autoplay: false, controls: true) %>
+<% if @user.band %>
+  
+  <div class="Band">
+    
+    <h2><%= @user.band.try :name %> <%= link_to 'EDIT', edit_band_path(@user.band) %></h2>
+    <%= image_tag @user.band.band_art %>
+      <% unless @user.band.albums.blank? %>
+      <ul>
+          <% @user.band.albums.each do |album| %>
+            <li>
+            <%= link_to album.name, album_path(album) %> 
+
+              <% if album.songs %>
+                <ul>
+                  <% album.songs.each do |song| %>
+                  <li>
+                    <%= song.name %><br>
+                    <%= audio_tag(song.track, autoplay: false, controls: true) %>
+                  </li>
+                  <% end %>
+                  <li><%= link_to 'Add Song to Album', new_song_path %></li>
+                </ul>
+            <% end %>
           </li>
           <% end %>
-        </ul>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to 'New Album', new_album_path %>
-</div>
+      <% else %>
+        <%= link_to 'Create Album', new_album_path %>
+      <% end %>
+    </ul>
+  
+  </div>
+<% else %>
+<%= link_to 'Start a Band!', new_band_path %>
+<% end %>
 
 
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+</div>

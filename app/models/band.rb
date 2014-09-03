@@ -5,6 +5,6 @@ class Band < ActiveRecord::Base
 
   mount_uploader :band_art, BandArtUploader
 
-  scope :recent, order(created_at: :desc).limit(3)
+  scope :newest, order('created_at desc').limit(1)
 
 end

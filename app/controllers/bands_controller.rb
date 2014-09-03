@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
-
+  load_and_authorize_resource
+  
   def new
     @band = Band.new
   end
@@ -7,8 +8,10 @@ class BandsController < ApplicationController
   def create
     @band = Band.new(params[:band])
 
+    @band.user_id = current_user.id
+
     if @band.save
-      redirect_to bands_path, notice: "Album Created."
+      redirect_to users_path, notice: "Band Started!"
     else
       render "new"
     end
@@ -34,7 +37,8 @@ class BandsController < ApplicationController
   end
 
   def index
-    @bands = Band.all
+    @q = Band.search(params[:q])
+    @bands = @q.result(distinct: true)
   end
 
   def manage_band

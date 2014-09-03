@@ -1,4 +1,7 @@
 class AlbumsController < ApplicationController
+
+  load_and_authorize_resource
+
   def new
     #TODO Authentication to make sure user is logged in
     @album = Album.new
@@ -6,10 +9,10 @@ class AlbumsController < ApplicationController
 
   def create
     @album = Album.new(params[:album])
-    # @album.user_id = current_user.id
+    @album.band_id = current_user.band.id
 
     if @album.save
-      redirect_to albums_path, notice: "Album Created."
+      redirect_to user_path(@album.band.user_id), notice: "Album Created!"
     else
       render "new"
     end

@@ -6,7 +6,7 @@ class Song < ActiveRecord::Base
   acts_as_commentable
   
   #todo add most commented tracks scope
-  scope :popular, joins(:comments).group(:id)
+  scope :popular, joins(:comments).group('songs.id').order('count(comments.id) desc')
 
   #todo allow bands to see recent comments on songs they 'own'
 

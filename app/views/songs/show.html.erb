@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper">
 <p><%= @song.album.band.try :name %>/<%= @song.album.try :name %><br><%= @song.name %><br><br><%= audio_tag(@song.track, autoplay: false, controls: true) %></p>
 <p>
 <% if current_user %>
@@ -24,3 +24,4 @@
 
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>
+</div>

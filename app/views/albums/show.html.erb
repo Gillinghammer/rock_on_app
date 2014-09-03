@@ -1,8 +1,10 @@
+<div class="wrapper">
 <h1><%= @album.name %></h1>
 <ul>
 <% @album.songs.each do |song| %>
   <li>
-    <%= song.album.band.name %>/<%= song.album.name %><br><%= song.name %><br><br><%= audio_tag(song.track, autoplay: false, controls: true) %>
+    <%= song.album.band.name %>/<%= song.album.name %> <%= link_to 'edit', edit_album_path(song.album) %><br><%= song.name %> <%= link_to 'edit', edit_song_path(song) %><br><br><%= audio_tag(song.track, autoplay: false, controls: true) %>
   </li><br>
 <% end %>
 </ul>
+</div>
