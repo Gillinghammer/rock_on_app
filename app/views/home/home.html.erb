@@ -1,11 +1,38 @@
 <div class="RecentAlbums">
   <h2>Recent Albums</h2>
-  <ul>
+  
   <% @recent_albums.each do |album| %>
-    <li>
-      <%= link_to album.name, album_path(album) %><br>  
-      <%= link_to album.band.name, band_path(album.band) %>
-    </li>
+    <div class="album">
+      <%= image_tag album.album_art %>
+      <div class="details">
+      <h2><%= link_to album.name, album_path(album) %></h2>
+      <h4><%= link_to album.band.name, band_path(album.band) %></h4>
+    </div>
+    </div>
   <% end %>
-  </ul>
+  
+</div>
+
+<div class="NewBands">
+  <h2>New Bands</h2>
+  
+  <% @recent_bands.each do |band| %>
+  <div class="album">
+    <%= image_tag band.band_art %>
+      <div class="details">
+      <h2><%= link_to band.name, band_path(band) %></h2>
+      </div>
+      </div>
+  <% end %>
+
+  <p><%= link_to "All Bands", bands_path %></p>
+</div>
+
+<div class="PopularSongs">
+  <h2>Popular Songs</h2>
+  <% @popular_songs.each do |song| %>
+    <div class="details">
+    <h2><%= link_to song.name, song_path(song) %></h2>
+    </div>
+    <% end %>
 </div>

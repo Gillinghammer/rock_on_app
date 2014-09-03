@@ -1,0 +1,8 @@
+<h1><%= @playlist.name %></h1>
+<ul>
+<% @playlist.songs.each do |song| %>
+  <li>
+    <%= song.album.band.name %>/<%= song.album.name %><br><%= song.name %><br><br><%= audio_tag(song.track, autoplay: false, controls: true) %>
+  </li><br>
+<% end %>
+</ul>

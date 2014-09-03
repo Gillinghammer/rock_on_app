@@ -1,5 +1,5 @@
 class Album < ActiveRecord::Base
-  attr_accessible :name, :band_id
+  attr_accessible :name, :band_id, :album_art
   has_many :songs
   belongs_to :band
 
@@ -7,5 +7,5 @@ class Album < ActiveRecord::Base
 
   scope :recent, last(3)
 
-  #todo Mount Uploader for album artwork
+  mount_uploader :album_art, AlbumArtUploader
 end

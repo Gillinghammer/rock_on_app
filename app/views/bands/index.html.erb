@@ -2,7 +2,7 @@
 <ul>
 <% @bands.each do |band| %>
   <li>
-    <%= band.name %>
+    <%= band.name %> <%= link_to "edit", edit_band_path(band) %>
       <ul>
         <% band.albums.each do |album| %>
         <li>

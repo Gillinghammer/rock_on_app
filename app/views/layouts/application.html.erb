@@ -5,6 +5,87 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <style type="text/css">
+      
+      body {
+        background-color: #ffeb00;
+      }
+
+    img {
+      width: 200px;
+    }
+
+    .wrapper {
+      padding: 70px 25px;
+    }
+
+    .RecentAlbums {
+      position: relative;
+      color: #333333
+    }
+
+    .RecentAlbums .album img {
+      position: relative;
+      display: inline-block;
+    }
+
+    .RecentAlbums .album .details {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      padding-left: 20px;
+    }
+
+    .details h2, h4 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .details a:visited {
+      color: #333333;
+    }
+
+    .album {
+      padding-bottom: 20px;
+    }
+
+    nav {
+      z-index: 10;
+      min-height: 20px;
+      color: white;
+      background-color: #333333;
+      width: 100%;
+      top: 0;
+      position: fixed;
+    }
+
+    footer {
+      z-index: 10;
+      min-height: 20px;
+      color: white;
+      background-color: #333333;
+      width: 100%;
+      bottom: 0;
+      position: fixed;
+      padding-left: 20px;
+    }
+
+    nav a:visited {
+      color: white;
+    }
+    nav a:hover {
+      color: blue;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    nav li {
+      display: inline;
+      padding-right: 10px;  
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -13,18 +94,22 @@
         <%= link_to 'Rock On!', root_path %>
       </li>
       <li>
-        <%= link_to "Sign Up", new_user_path %>
+        <%= link_to current_user.name, user_path(current_user) if current_user %>
       </li>
       <li>
-        <%= link_to 'Login', login_path %>
+        <%= link_to "Sign Up", new_user_path unless current_user %>
       </li>
       <li>
-        <%= link_to 'Log Out!', logout_path %>
+        <%= link_to 'Login', login_path unless current_user %>
+      </li>
+      <li>
+        <%= link_to 'Logout', logout_path if current_user %>
       </li>
     </ul>
   </nav>
-
+<div class="wrapper">
 <%= yield %>
+</div>
 <footer>
   <% flash.each do |name, msg| %>
     <div class="flash-message flash-message-<%= name %>">
@@ -32,7 +117,7 @@
     </div>
     <% end %>
     <% if current_user %>
-    <p>Hello <%= current_user.name %>, you are registered as a <%= current_user.role %></p>
+    <p><%= current_user.name %> you're logged in.</p>
     <% end %>
 </footer>
 </body>

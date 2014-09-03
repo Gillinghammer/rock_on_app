@@ -14,6 +14,7 @@ end
 
 def create
   @playlist = Playlist.new (params[:playlist])
+  @playlist.user_id = current_user.id
   if @playlist.save
     redirect_to playlists_path, notice: "Playlist created"
   else

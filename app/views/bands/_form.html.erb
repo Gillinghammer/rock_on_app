@@ -19,7 +19,10 @@
     <%= f.label :genre %><br />
     <%= f.text_field :genre %>
   </div>
-  
+  <div class="field">
+      <%= f.label :band_art %><br />
+      <%= f.file_field :band_art %>
+  </div>
     <%= f.submit %>
   </div>
 <% end %>
