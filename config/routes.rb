@@ -3,15 +3,16 @@ RockOnApp::Application.routes.draw do
 
   resources :users
   resources :sessions
-  resources :albums
-  resources :songs
-  resources :bands
   resources :playlists
-
-resources :songs do
-  resources :comments
-end
-
+  resources :reports
+  
+  resources :bands do
+    resources :albums do
+      resources :songs do
+        resources :comments
+      end
+    end
+  end
 
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'

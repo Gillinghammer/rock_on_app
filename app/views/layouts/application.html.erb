@@ -5,10 +5,15 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
   <style type="text/css">
       
       body {
-        background-color: white;
+        background-color: #F2F2F2;
+        font-family: 'Roboto Slab', serif;
       }
 
     .band {
@@ -21,59 +26,52 @@
       width: 100%;
       height: 100%;
       margin: 0px 0 0 0px; 
-
-    }
-
-    .PopularSongs {
-      position: fixed;
-      top: 50px;
-      right: 20px;
-      max-width: 200px;
-      text-align: right;
     }
 
     .wrapper {
       padding: 70px 0px;
       margin: 0 auto;
-      width: 850px;
+      max-width: 850px;
+      min-width: 850px;
     }
 
     .RecentAlbums {
       position: relative;
       color: #333333;
+      max-width: 850px;
+      min-width: 850px;
     }
 
     .RecentAlbums img {
-          width: 250px;
-          border: 5px solid white;
+          width: 230px;
+          border: 5px solid black;
         }
 
     .RecentAlbums a:hover img {
-          width: 250px;
-          border: 5px solid black;
+          width: 230px;
+          border: 5px solid #a9a9a9;
         }
 
     .RecentAlbums .album  {
       position: relative;
       display: inline-block;
-      padding: 0 20px 20px 0;
+      padding: 0 25px 25px 0;
+    }
+
+    .profile_image img {
+      width: 250px;
     }
 
 
-    nav {
-      z-index: 10;
-      min-height: 20px;
-      color: white;
-      background-color: #333333;
-      width: 100%;
-      top: 0;
-      position: fixed;
+    h1, h2 {
+      font-weight: 700;
+      color: #333333;
     }
 
     footer {
       z-index: 10;
-      min-height: 20px;
-      color: white;
+      min-height: 40px;
+      color: #F2F2F2;
       background-color: #333333;
       width: 100%;
       bottom: 0;
@@ -81,46 +79,108 @@
       padding-left: 20px;
     }
 
-    nav a:visited {
-      color: white;
+    footer a {
+      color: #F2F2F2;
+      font-style: italic;
+      font-size: .7em;
+      padding-left: .5em;
     }
-    nav a:hover {
-      color: blue;
+    footer a:visited {
+      color: #F2F2F2;
+      font-style: italic;
+      font-size: .7em;
+      padding-left: .5em;
     }
 
-    a {
-      text-decoration: none;
+    header {
+      width: 100%;
+      height: 50px;
+      background-color: #BF0404;
+      border-bottom: 5px solid black;
+      position: fixed;
+      z-index: 10;
     }
-
-    nav li {
+    nav {
+      margin: 0 auto;
+      max-width: 850px;
+      position: relative;
+    }
+    .navigation{
+      padding-top: 15px;
+      display: inline-block;
+      height: 100%;
+    }
+    .navigation ul, li {
       display: inline;
-      padding-right: 10px;  
+      margin: 0;
+      padding: 0 50px 0 0;
+      vertical-align: middle;
     }
+
+@media (max-width: 1130px) {
+       .search {
+          display: none;
+
+        }
+        .PopularSongs {
+          display: none;
+
+        }
+
+      }
+
+      @media (min-width: 1130px) {
+             .search {
+                display: inline-block;
+                position: relative;
+              }
+              .PopularSongs {
+                position: fixed;
+                top: 50px;
+                right: 20px;
+                max-width: 200px;
+                text-align: right;
+              }
+
+            }
+
   </style>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li>
-        <%= link_to 'Rock On!', root_path %>
-      </li>
-      <li>
-        <%= link_to current_user.name, user_path(current_user) if current_user %>
-      </li>
-      <li>
-        <%= link_to "Sign Up", new_user_path unless current_user %>
-      </li>
-      <li>
-        <%= link_to 'Login', login_path unless current_user %>
-      </li>
-      <li>
-        <%= link_to 'Logout', logout_path if current_user %>
-      </li>
-      <li>
-        SEARCH
-      </li>
-    </ul>
-  </nav>
+  <header>
+    <nav>
+      <div class="navigation">
+        <ul>
+          <li>
+            <%= link_to 'Rock On!', root_path %>
+          </li>
+          <% if current_user %>
+          <li>
+            <%= link_to current_user.name, user_path(current_user) %>
+          </li>
+          <% end %>
+          <li>
+            <%= link_to "Bands", bands_path %>
+          </li>
+          <% unless current_user %>
+          <li>
+            <%= link_to 'Login', login_path %>
+          </li>
+          <% end %>
+          <% unless current_user %>
+          <li>
+            <%= link_to "Sign Up", new_user_path %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="search">
+            <%= search_form_for @q do |f| %>
+                <%= f.text_field :name_cont, :placeholder => "Search Bands" %> <%= f.submit %>
+            <% end %>
+      </div>
+    </nav>
+  </header>
 <%= yield %>
 
 <footer>
@@ -130,7 +190,7 @@
     </div>
     <% end %>
     <% if current_user %>
-    <p><%= current_user.name %> you're logged in.</p>
+    <p><%= current_user.name %> you're logged in. <%= link_to '[ Logout ]', logout_path %></p>
     <% end %>
 </footer>
 </body>

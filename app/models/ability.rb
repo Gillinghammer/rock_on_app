@@ -4,32 +4,36 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    alias_action :edit, :update, :to => :edit_and_update
+    # alias_action :create, :read, :edit, :update, :destroy, :to => :crud
 
     if user.role? :admin
       can :manage, :all
-    elsif user.role? :fan
-      can :read, [User, Song, Album, Band, Playlist]
-      cannot :create, User
-      can :edit_and_update, User do |person|
-        person.try  :user == user
+    elsif user.persisted?
+
+      can :read, :all
+
+
+      can :manage, Band do |band|
+        band && band.user == user
       end
-      can :edit_and_update, Song do |song|
-        song.album.band.user == user
+
+      can :manage, Album do |album|
+        album && album.band && album.band.user == user
       end
-      can :edit_and_update, Album do |album|
-        album.band.user == user
+
+      can :manage, Song do |song|
+        song && song.album && song.album.band && song.album.band.user == user
       end
-      can :edit_and_update, Band do |band|
-        band.user == user
+
+      can :manage, Comment do |comment|
+        comment && comment.song && comment.song.album && comment.song.album.band && comment.song.album.band.user == user
       end
-      can :edit_and_update, Playlist do |playlist|
-        playlist.user == user
-      end
+
     else
-        can :create, User
-        can :read, [User, Song, Album, Band, Playlist]
-    end
-  end
+      can :read, :all
+      cannot :read, User
+
+     end
+end
 
 end

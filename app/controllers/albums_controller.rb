@@ -4,12 +4,12 @@ class AlbumsController < ApplicationController
 
   def new
     #TODO Authentication to make sure user is logged in
+    @band = Band.find(params[:band_id])
     @album = Album.new
   end
 
   def create
-    @album = Album.new(params[:album])
-    @album.band_id = current_user.band.id
+    @album = current_user.band.albums.new(params[:album])
 
     if @album.save
       redirect_to user_path(@album.band.user_id), notice: "Album Created!"
@@ -24,6 +24,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @band = Band.find(params[:band_id])
     @album = Album.find(params[:id])
   end
 

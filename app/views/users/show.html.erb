@@ -33,26 +33,17 @@
     <%= image_tag @user.band.band_art %>
       <% unless @user.band.albums.blank? %>
       <ul>
+        <div class="RecentAlbums">
           <% @user.band.albums.each do |album| %>
-            <li>
-            <%= link_to album.name, album_path(album) %> 
-
-              <% if album.songs %>
-                <ul>
-                  <% album.songs.each do |song| %>
-                  <li>
-                    <%= song.name %><br>
-                    <%= audio_tag(song.track, autoplay: false, controls: true) %>
-                  </li>
-                  <% end %>
-                  <li><%= link_to 'Add Song to Album', new_song_path %></li>
-                </ul>
+          
+            <div class="album">
+              <%= link_to "#{image_tag(album.album_art)}".html_safe, band_album_path(album.band, album) %>
+            </div>
             <% end %>
-          </li>
-          <% end %>
-      <% else %>
-        <%= link_to 'Create Album', new_album_path %>
+          </div>
+          
       <% end %>
+      <%= link_to 'Create New Album', new_band_album_path(@user.band) %>
     </ul>
   
   </div>

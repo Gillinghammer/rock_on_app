@@ -1,9 +1,14 @@
 <div class="wrapper">
 <h1><%= @album.name %></h1>
+<%= link_to 'Add Song', new_band_album_song_path(@album.band, @album) %>
 <ul>
 <% @album.songs.each do |song| %>
   <li>
-    <%= song.album.band.name %>/<%= song.album.name %> <%= link_to 'edit', edit_album_path(song.album) %><br><%= song.name %> <%= link_to 'edit', edit_song_path(song) %><br><br><%= audio_tag(song.track, autoplay: false, controls: true) %>
+    <br><%= song.name %> <%= link_to 'edit', edit_band_album_song_path(@album.band, @album, song) %> 
+    <%= link_to 'delete', band_album_song_path(@album.band, @album, song), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'leave comment', band_album_song_path(@album.band, @album, song) %>
+    <br><br>
+    <%= audio_tag(song.track, autoplay: false, controls: true) %>
   </li><br>
 <% end %>
 </ul>

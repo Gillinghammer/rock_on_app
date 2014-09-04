@@ -1,38 +1,37 @@
 class PlaylistsController < ApplicationController
   load_and_authorize_resource
 
-def index
-  @playlists = Playlist.all
-end
-
-def show
-  @playlist = Playlist.find(params[:id])
-end
-
-def new
-  @playlist = Playlist.new
-end
-
-def create
-  @playlist = Playlist.new (params[:playlist])
-  @playlist.user_id = current_user.id
-  if @playlist.save
-    redirect_to playlists_path, notice: "Playlist created"
-  else
-    render "new"
+  def index
+    @playlists = Playlist.all
   end
-end
 
-def edit
-  @playlist = Playlist.find(params[:id])
-end
+  def show
+    @playlist = Playlist.find(params[:id])
+  end
 
-def update
+  def new
+    @playlist = Playlist.new
+  end
 
-end
+  def create
+    @playlist = current_user.playlists.new (params[:playlist])
+    if @playlist.save
+      redirect_to playlists_path, notice: "Playlist created"
+    else
+      render "new"
+    end
+  end
 
-def destroy
+  def edit
+    @playlist = Playlist.find(params[:id])
+  end
 
-end
+  def update
+
+  end
+
+  def destroy
+
+  end
 
 end

@@ -14,6 +14,8 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
+    @band = Band.find(params[:band_id])
+    @album = Album.find(params[:album_id])
     @song = Song.find(params[:id])
 
     #commentable
@@ -24,11 +26,9 @@ class SongsController < ApplicationController
   # GET /songs/new
   # GET /songs/new.json
   def new
+    @band = Band.find(params[:band_id])
+    @album = Album.find(params[:album_id])
     @song = Song.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @song }
-    end
   end
 
   # GET /songs/1/edit
@@ -40,13 +40,12 @@ class SongsController < ApplicationController
   # POST /songs.json
   def create
     @song = Song.new(params[:song])
-
-    respond_to do |format|
-      if @song.save
-        redirect_to song_path(@song), notice: "Song Added!" #TODO Redirect to Album page
-        else
-          render "new"
-      end
+    @band = Band.find(params[:band_id])
+    @album = Album.find(params[:album_id])
+    if @song.save
+      redirect_to band_album_song_path(@band, @album, @song), notice: "Song Added!"
+    else
+      render "new"
     end
   end
 
@@ -71,10 +70,5 @@ class SongsController < ApplicationController
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
-
-    respond_to do |format|
-      format.html { redirect_to songs_url }
-      format.json { head :no_content }
-    end
   end
 end

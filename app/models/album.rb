@@ -6,7 +6,7 @@ class Album < ActiveRecord::Base
 
   acts_as_commentable
 
-  scope :recent, order('created_at desc').limit(6)
+  scope :recent_albums, order('created_at desc').limit(6)
 
   mount_uploader :album_art, AlbumArtUploader
 end

@@ -6,12 +6,10 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = Band.new(params[:band])
-
-    @band.user_id = current_user.id
+    @band = current_user.band = Band.new(params[:band])
 
     if @band.save
-      redirect_to users_path, notice: "Band Started!"
+      redirect_to user_path(@band.user), notice: "Band Started!"
     else
       render "new"
     end
@@ -41,8 +39,9 @@ class BandsController < ApplicationController
     @bands = @q.result(distinct: true)
   end
 
-  def manage_band
-    @band = User.find(params[:id]).band
+  def destroy
+    @band = Band.find(params[:id])
+    @band.destroy
   end
 
 end
