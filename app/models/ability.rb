@@ -12,6 +12,14 @@ class Ability
 
       can :read, :all
 
+      can :create, Playlist
+      can :create, Album if user.band 
+      can :create, Band
+      can :create, Song
+
+      can :manage, Playlist do |playlist|
+        playlist && playlist.user == user
+      end
 
       can :manage, Band do |band|
         band && band.user == user
@@ -26,12 +34,14 @@ class Ability
       end
 
       can :manage, Comment do |comment|
-        comment && comment.song && comment.song.album && comment.song.album.band && comment.song.album.band.user == user
+        comment.user_id  == user.id
       end
 
     else
       can :read, :all
-      cannot :read, User
+      can :create, User
+
+
 
      end
 end

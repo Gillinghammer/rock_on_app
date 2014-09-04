@@ -3,7 +3,7 @@
 
 <% @bands.each do |band| %>
 <div class="RecentAlbums">
-  <h2><%= link_to band.name, band_path(band) %> <%= link_to 'delete', band, method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+  <h2><%= link_to band.name, band_path(band) %></h2>
   <% band.albums.each do |album| %>
   <div class="album">
     <%= link_to "#{image_tag(album.album_art)}".html_safe, band_album_path(album.band, album) %>

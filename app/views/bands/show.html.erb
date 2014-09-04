@@ -1,3 +1,13 @@
+<style type="text/css">
+  body {
+    background-image: url(<%= @band.custom_background %>);
+    background-size: cover;
+  }
+  h2 {
+    
+  }
+</style>
+
 <div class="wrapper">
 <% if @band %>
   
@@ -17,11 +27,16 @@
           </div>
           
       <% end %>
+
+      <% if current_user == @band.user %> 
       <%= link_to 'Create New Album', new_band_album_path(@band) %>
+      <% end %>
     </ul>
   
   </div>
 <% else %>
+<% if current_user == @band.user %> 
 <%= link_to 'Start a Band!', new_band_path %>
+<% end %>
 <% end %>
 </div>

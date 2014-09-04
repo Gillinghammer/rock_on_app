@@ -18,9 +18,6 @@ class SongsController < ApplicationController
     @album = Album.find(params[:album_id])
     @song = Song.find(params[:id])
 
-    #commentable
-    @comment = @song.comments.new
-
   end
 
   # GET /songs/new

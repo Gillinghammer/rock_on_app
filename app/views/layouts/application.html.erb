@@ -62,10 +62,19 @@
       width: 250px;
     }
 
-
     h1, h2 {
       font-weight: 700;
       color: #333333;
+    }
+
+    h2 a:visited {
+      text-decoration: none;
+      color: #333333;
+    }
+
+    h2 a {
+    text-decoration: none; 
+    color: #333333;
     }
 
     footer {
@@ -105,6 +114,23 @@
       max-width: 850px;
       position: relative;
     }
+
+    nav a {
+     color: #F2F2F2;
+      font-size: 1em;
+      text-decoration: none;
+    }
+
+    nav a:visited {
+      color: #F2F2F2;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #333333;
+      
+    }
+
     .navigation{
       padding-top: 15px;
       display: inline-block;
@@ -115,6 +141,15 @@
       margin: 0;
       padding: 0 50px 0 0;
       vertical-align: middle;
+    }
+
+    h4.flag {
+      color: #BF0404;
+    }
+
+    textarea {
+      height: 100px;
+      width: 295px;
     }
 
 @media (max-width: 1130px) {
@@ -134,12 +169,26 @@
                 display: inline-block;
                 position: relative;
               }
+
+              .search input[type=text] {
+                 width: 200px;
+               }
+
               .PopularSongs {
+                color: #333333;
                 position: fixed;
-                top: 50px;
-                right: 20px;
+                font-size: 1.2em;
+                top: 70px;
+                right: 30px;
                 max-width: 200px;
                 text-align: right;
+              }
+              .PopularSongs a {
+                text-decoration: none;
+                color: #BF0404;
+              }
+              .PopularSongs i {
+                padding-left: 10px;
               }
 
             }
@@ -176,7 +225,8 @@
       </div>
       <div class="search">
             <%= search_form_for @q do |f| %>
-                <%= f.text_field :name_cont, :placeholder => "Search Bands" %> <%= f.submit %>
+                <%= f.text_field :name_cont, :placeholder => "Search Bands" %> 
+                <%= f.submit %>
             <% end %>
       </div>
     </nav>

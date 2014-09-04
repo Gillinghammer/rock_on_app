@@ -16,12 +16,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :genre %><br />
-    <%= f.text_field :genre %>
-  </div>
-  <div class="field">
       <%= f.label :band_art %><br />
       <%= f.file_field :band_art %>
+  </div>
+  <div class="field">
+      <%= f.label :Page_Background %><br />
+      <%= f.file_field :custom_background %>
+  </div>
+  <div class="field">
+    <%= f.label :Font %><br />
+    <%= f.text_field :custom_font %>
   </div>
     <%= f.submit %>
   </div>

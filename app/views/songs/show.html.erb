@@ -1,31 +1,35 @@
-
-
 <div class="wrapper">
-<p><%= @song.album.band.try :name %>/<%= @song.album.try :name %><br><%= @song.name %><br><br><%= audio_tag(@song.track, autoplay: false, controls: true) %></p>
-<p>
-<% if current_user %>
-<%= form_for [@band, @album, @song, Comment.new ] do |f| %>
+  <h2><%= @song.album.try :name %></h2>
+  <h3><%= @song.name %></h3>
+  <%= audio_tag(@song.track, autoplay: false, controls: true) %></audio>
+
+  <% if current_user %>
+  <%= form_for [@band, @album, @song, Comment.new ] do |f| %>
   <%= f.hidden_field :commentable_id, value: @song.id %>
   <%= f.hidden_field :commentable_type, value: 'Song' %>
-  <%= f.text_area :body %>
+  <%= f.text_area :body %><br>
   <%= f.submit %>
-<% end %>
-</p>
-<% end %>
-
-  <% @song.comments.each do |comment| %>
-  <p>
-  <%= comment.body %><br>
-  <%= comment.created_at %><br>
-  <i class="fa fa-exclamation"></i><%= comment.reports.count %><br>
-  <%= button_to 'Flag', {:controller => "reports", :action => "create", :comment_id => comment.id, :user_id=> session[:user_id] , :song_id=> @song.id} , :method=>:post  %>
-  <% if current_user %>
-  <%= link_to "Delete Comment", [@band, @album, @song, comment], :method => :delete,:confirm=>'Are you sure?' unless current_user.id != comment.user_id %>
   <% end %>
-  </p>
   <% end %>
 
+  <div class='comments'>
 
-<%= link_to 'Edit', edit_band_album_song_path(@band, @album, @song) %> |
-<%= link_to 'Back', band_album_songs_path(@band, @album) %>
+    <% @song.comments.each do |comment| %>
+    <h4><%= User.find(comment.user_id).name %> wrote: </h4>
+    <h4><%= comment.body %></h4>
+    <h4><%= (comment.created_at).strftime("%m/%d/%Y")  %></h4>
+    <%= button_to 'Flag as innapropriate', {:controller => "reports", :action => "create", :comment_id => comment.id, :user_id=> session[:user_id] , :song_id=> @song.id} , :method=>:post  %>
+    <%= button_to "Delete Comment", [@band, @album, @song, comment], :method => :delete,:confirm=>'Are you sure?' if current_user && current_user.id == comment.user_id %>
+
+    
+    <% if comment.reports.count > 3 %>
+      <h4 class="flag"><i class="fa fa-exclamation"></i><i class="fa fa-exclamation"></i><i class="fa fa-exclamation"></i> Flagged: <%= comment.reports.count %> times <i class="fa fa-exclamation"></i><i class="fa fa-exclamation"></i><i class="fa fa-exclamation"></i></h4>
+      
+      <% end %> 
+    <% end %>
+
+  </div>
+
+  <%= link_to 'Edit', edit_band_album_song_path(@band, @album, @song) %> |
+  <%= link_to 'Back', band_album_songs_path(@band, @album) %>
 </div>

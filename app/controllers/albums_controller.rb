@@ -5,6 +5,7 @@ class AlbumsController < ApplicationController
   def new
     #TODO Authentication to make sure user is logged in
     @band = Band.find(params[:band_id])
+    #TODO authorize!
     @album = Album.new
   end
 

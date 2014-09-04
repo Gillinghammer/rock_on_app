@@ -1,8 +1,8 @@
 <div class="PopularSongs">
-  <h4>Most Talked About Tracks</h4>
+  <h4>Most Talked About Tracks <i class="fa fa-comments-o"></i></i></h4>
   <% @popular_songs.each do |song| %>
     <div class="details">
-    <h4><%= link_to song.name, band_album_song_path(song.album.band, song.album, song) %> <%= song.comments.count %></h4>
+    <h4><%= link_to song.name, band_album_song_path(song.album.band, song.album, song) %> <i class="fa fa-comment-o"></i> </h4>
     </div>
     <% end %>
 </div>

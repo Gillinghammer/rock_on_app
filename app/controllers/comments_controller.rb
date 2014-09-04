@@ -1,7 +1,5 @@
     class CommentsController < ApplicationController
 
-      load_and_authorize_resource
-
       def create
         @comment_hash = params[:comment]
         @obj = @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])
@@ -20,7 +18,9 @@
       end
 
       def destroy
+
         @comment = Comment.find(params[:id])
+        authorize! :destroy, @comment
         @comment.destroy
 
         @band = Band.find(params[:band_id])

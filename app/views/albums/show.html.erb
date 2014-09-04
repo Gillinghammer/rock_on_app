@@ -1,14 +1,20 @@
 <div class="wrapper">
 <h1><%= @album.name %></h1>
+<% if current_user == @album.band.user %> 
 <%= link_to 'Add Song', new_band_album_song_path(@album.band, @album) %>
+<% end %>
 <ul>
 <% @album.songs.each do |song| %>
   <li>
-    <br><%= song.name %> <%= link_to 'edit', edit_band_album_song_path(@album.band, @album, song) %> 
-    <%= link_to 'delete', band_album_song_path(@album.band, @album, song), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= link_to 'leave comment', band_album_song_path(@album.band, @album, song) %>
-    <br><br>
-    <%= audio_tag(song.track, autoplay: false, controls: true) %>
+    <br><%= song.name %><br>
+    <%= audio_tag(song.track, autoplay: false, controls: true) %></audio><br>
+    <% if current_user == @album.band.user %> 
+    <%= link_to 'Edit Song', edit_band_album_song_path(@album.band, @album, song) %> 
+
+    <%= link_to 'Delete Song', band_album_song_path(@album.band, @album, song), method: :delete, data: { confirm: 'Are you sure?' } %><br>
+    <% end %>
+    <%= link_to 'Leave Feedback', band_album_song_path(@album.band, @album, song) unless current_user == @album.band.user %>
+    <%= link_to 'View Feedback', band_album_song_path(@album.band, @album, song) if current_user == @album.band.user %>
   </li><br>
 <% end %>
 </ul>
