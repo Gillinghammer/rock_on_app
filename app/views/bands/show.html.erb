@@ -13,7 +13,7 @@
   
   <div class="Band">
     
-    <h2><%= @band.try :name %> <%= link_to 'EDIT', edit_band_path(@band) %></h2>
+    <h2><%= @band.try :name %></h2>
     <%= image_tag @band.band_art %>
       <% unless @band.albums.blank? %>
       <ul>

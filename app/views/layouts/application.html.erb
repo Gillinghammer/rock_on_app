@@ -42,20 +42,62 @@
       min-width: 850px;
     }
 
-    .RecentAlbums img {
-          width: 230px;
-          border: 5px solid black;
-        }
-
-    .RecentAlbums a:hover img {
-          width: 230px;
-          border: 5px solid #a9a9a9;
-        }
-
     .RecentAlbums .album  {
       position: relative;
       display: inline-block;
       padding: 0 25px 25px 0;
+    }
+
+    .albumpage {
+      padding-top: 70px;
+    }
+
+    .songs {
+      padding-left: 50px;
+      vertical-align: top;
+      display: inline-block;
+      position: relative;
+    }
+
+    .songs h3 {
+      margin:0;
+      padding: 0;
+    }
+
+    .song {
+      display: block;
+      padding-bottom: 25px;
+      font-size: 1.2em;
+    }
+
+    .song a {
+      padding: 5px 20px 0 0;
+      text-decoration: none;
+      color: #BF0404;
+    }
+
+    .song .links a {
+     float: right;
+     padding-right: 0;
+     padding-left: 20px;
+    }
+
+    .album {
+      vertical-align: top;
+      display: inline-block;
+      position: relative;
+      text-align: center;
+
+    }
+
+       .album img {
+          width: 230px;
+          border: 5px solid black;
+        }
+
+     .album a:hover img {
+
+      border: 5px solid #a9a9a9;
     }
 
     .profile_image img {
@@ -168,6 +210,7 @@
              .search {
                 display: inline-block;
                 position: relative;
+                padding-left: 90px;
               }
 
               .search input[type=text] {
@@ -176,7 +219,7 @@
 
               .PopularSongs {
                 color: #333333;
-                position: fixed;
+                position: absolute;
                 font-size: 1.2em;
                 top: 70px;
                 right: 30px;

@@ -30,6 +30,8 @@ class SongsController < ApplicationController
 
   # GET /songs/1/edit
   def edit
+    @band = Band.find(params[:band_id])
+    @album = Album.find(params[:album_id])
     @song = Song.find(params[:id])
   end
 
@@ -49,11 +51,13 @@ class SongsController < ApplicationController
   # PUT /songs/1
   # PUT /songs/1.json
   def update
+    @album = Album.find(params[:album_id])
+    @band = Band.find(params[:band_id])
     @song = Song.find(params[:id])
 
     respond_to do |format|
       if @song.update_attributes(params[:song])
-        format.html { redirect_to @song, notice: 'Song was successfully updated.' }
+        format.html { redirect_to band_album_song_path(@band, @album, @song), notice: 'Song was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

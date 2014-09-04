@@ -29,7 +29,8 @@
   
   <div class="Band">
     
-    <h2><%= @user.band.try :name %> <%= link_to 'EDIT', edit_band_path(@user.band) %></h2>
+    <h2><%= link_to @user.band.name, band_path(@user.band.id) %> </h2>
+    <h4><%= link_to 'EDIT', edit_band_path(@user.band) %></h4>
     <%= image_tag @user.band.band_art %>
       <% unless @user.band.albums.blank? %>
       <ul>
