@@ -1,42 +1,51 @@
 <style type="text/css">
-  body {
-    background-image: url(<%= @band.custom_background %>);
-    background-size: cover;
-  }
-  h2 {
-    font-family: <%= @band.custom_font %>;
-  }
+body {
+  background-image: url(<%= @band.custom_background %>);
+  background-size: cover;
+}
+h1, h2, h3, h4 {
+
+  font-family: <%= @band.custom_font %>;
+}
+<% if @band.custom_font == 'AIRBORNE GP' || @band.custom_font == 'Ricasso' %>
+h2 {
+  font-size: 18px;
+}
+<% end %>
 </style>
 
 <div class="wrapper">
-<% if @band %>
+  <% if @band %>
   
-  <div class="Band">
-    
-    <h2><%= @band.try :name %></h2>
-    <%= image_tag @band.band_art %>
-      <% unless @band.albums.blank? %>
-      <ul>
-        <div class="RecentAlbums">
-          <% @band.albums.each do |album| %>
-          
-            <div class="album">
-              <%= link_to "#{image_tag(album.album_art)}".html_safe, band_album_path(album.band, album) %>
-            </div>
-            <% end %>
-          </div>
-          
-      <% end %>
+  <div class="band">
 
-      <% if current_user == @band.user %> 
-      <%= link_to 'Create New Album', new_band_album_path(@band) %>
-      <% end %>
-    </ul>
-  
+    <h1><%= @band.try :name %></h1>
+    <%= image_tag @band.band_art %>
+    <% unless @band.albums.blank? %>
+    <ul>
+      <div class="RecentAlbums">
+        <% @band.albums.each do |album| %>
+
+        <div class="album">
+          <%= link_to "#{image_tag(album.album_art)}".html_safe, band_album_path(album.band, album) %><br>
+          <h2><%= album.name %></h2>
+          <% if current_user == album.band.user %> 
+          <h4><%= link_to 'Add Song', new_band_album_song_path(album.band, album) %></h4>
+          <% end %>
+
+        </div>
+        <% end %>
+        <% end %>
+
+        <% if current_user == @band.user %> 
+        <h3><%= link_to 'Create New Album', new_band_album_path(@band) %></h3>
+        <% end %>
+      </ul>
+
+    </div>
+    <% else %>
+    <% if current_user == @band.user %> 
+    <h3><%= link_to 'Start a Band!', new_band_path %></h3>
+    <% end %>
+    <% end %>
   </div>
-<% else %>
-<% if current_user == @band.user %> 
-<%= link_to 'Start a Band!', new_band_path %>
-<% end %>
-<% end %>
-</div>

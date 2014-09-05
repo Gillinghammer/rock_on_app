@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140904172346) do
+ActiveRecord::Schema.define(:version => 20140904195913) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20140904172346) do
     t.datetime "updated_at",      :null => false
     t.string   "avatar"
     t.integer  "band_id"
+    t.text     "bio"
   end
 
 end

@@ -1,3 +1,19 @@
+<style type="text/css">
+body {
+  background-image: url(<%= @album.band.custom_background %>);
+  background-size: cover;
+}
+h1, h2, h3, h4 {
+
+  font-family: <%= @album.band.custom_font %>;
+}
+<% if @album.band.custom_font == 'AIRBORNE GP' || @album.band.custom_font == 'Ricasso' %>
+h2, h3, h4 {
+  font-size: 18px;
+}
+<% end %>
+</style>
+
 <div class="wrapper">
     <div class= "albumpage">
         <div class="album">
@@ -13,7 +29,6 @@
         <% @album.songs.each do |song| %>
         <span class="song">
         <h3><%= song.name %></h3>
-
         <%= audio_tag(song.track, autoplay: false, controls: true) %></audio><br>
 
         <%= link_to 'Leave Feedback', band_album_song_path(@album.band, @album, song) unless current_user == @album.band.user %>
@@ -23,9 +38,9 @@
         
         <% if current_user == @album.band.user %> 
         <span class="links">
-        <%= link_to '', band_album_song_path(@album.band, @album, song), method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-times-circle-o" %>
+        <%= link_to '', band_album_song_path(@album.band, @album, song), method: :delete, data: { confirm: 'Are you sure?' }, class: "fa fa-times-circle" %>
 
-        <%= link_to '', edit_band_album_song_path(@album.band, @album, song), class: "fa fa-pencil-square-o"  %> 
+        <%= link_to '', edit_band_album_song_path(@album.band, @album, song), class: "fa fa-pencil-square"  %> 
         </span>
 
         <% end %>

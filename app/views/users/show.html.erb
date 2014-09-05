@@ -1,55 +1,92 @@
-<div class="wrapper">
-<div class="profile_image">
-  <%= image_tag(@user.avatar) %>
-  <%= link_to "Edit Profile", edit_user_path(@user) %>
-  
-</div>
+<% if @user.band && @user.band.custom_background == nil %>
+<style type="text/css">
+body {
+  background-image: url(<%= @user.band.custom_background %>);
+  background-size: cover;
+}
+h1, h2, h3, h4 {
 
-<div class="Playlist">
-  <h2>Playlists</h2>
-  <ul>
-    <% @user.playlists.each do |playlist| %>
-    <li> 
-        <%= link_to playlist.name, playlist_path(playlist) %> 
-        <ul>
-          <% playlist.songs.each do |song| %>
-          <li>
-              <%= song.album.band.name %>: <%= song.name %><br>
-              <%= audio_tag(song.track, autoplay: false, controls: true) %>
-          </li>
-          <% end %>
-        </ul>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to 'New Playlist', new_playlist_path %>
+  font-family: <%= @user.band.custom_font %>;
+}
+<% if @user.band.custom_font == 'AIRBORNE GP' || @user.band.custom_font == 'Ricasso' %>
+h2 {
+  font-size: 18px;
+}
+<% end %>
+</style>
+<% end %>
+<div class="wrapper">
+<div class="user">
+
+<div class="profile">
+
+    <div class="profile_image">
+        <%= image_tag(@user.avatar) %>
+        <div class="bio">
+            <h3><%= @user.hometown %></h3>
+            <span><%= @user.bio %></span>
+        </div>
+    </div>
+
+  <h3><%= link_to "Edit Profile", edit_user_path(@user) %></h3>
+
 </div>
 
 <% if @user.band %>
   
-  <div class="Band">
+  <div class="band">
     
     <h2><%= link_to @user.band.name, band_path(@user.band.id) %> </h2>
-    <h4><%= link_to 'EDIT', edit_band_path(@user.band) %></h4>
+    <h3><%= link_to 'Edit', edit_band_path(@user.band) %></h3>
     <%= image_tag @user.band.band_art %>
       <% unless @user.band.albums.blank? %>
       <ul>
         <div class="RecentAlbums">
           <% @user.band.albums.each do |album| %>
           
+
             <div class="album">
-              <%= link_to "#{image_tag(album.album_art)}".html_safe, band_album_path(album.band, album) %>
-            </div>
-            <% end %>
+              <%= link_to "#{image_tag(album.album_art)}".html_safe, band_album_path(album.band, album) %><br>
+              <h2><%= album.name %></h2>
+              <% if current_user == album.band.user %> 
+              <h4><%= link_to 'Add Song', new_band_album_song_path(album.band, album) %></h4>
+              <% end %>
           </div>
+          <% end %>
           
       <% end %>
-      <%= link_to 'Create New Album', new_band_album_path(@user.band) %>
+
+      <h3><%= link_to 'Create New Album', new_band_album_path(@user.band) %></h3>
     </ul>
+
+    <div class="moderate">
+      <% band = @user.band %>
+    <% @user.band.albums.each do |album|  %>
+
+      <% album.songs.each do |song| %>
+      <% song.comments.each do |comment| %>
+          <% if comment.reports.count > 3 %>
+              <h3>Flagged Comments: </h3>
+              
+              <h4><%= User.find(comment.user_id).name %> wrote the follow on <%= (comment.created_at).strftime("%m/%d/%Y")  %> </h4>
+              <h4><%= comment.body %></h4>
+              <%= button_to "Delete Comment", [band, album, song, comment], :method => :delete,:confirm=>'Are you sure?' %>
+
+            <% end %>
+      <% end %>
+      <% end %>
+
+    <% end %>
+
+    </div>
   
   </div>
 <% else %>
 <%= link_to 'Start a Band!', new_band_path %>
+
 <% end %>
+</div>
+
+
 
 </div>

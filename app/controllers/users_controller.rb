@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    
     @user.role = 'fan'
     if @user.save
       redirect_to root_path, notice: "Thanks for signing up!"

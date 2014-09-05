@@ -1,3 +1,27 @@
+<style type="text/css">
+
+label[for="custom_font_Roboto Slab"] {
+   font-family: 'Roboto Slab';
+    font-size: 2em;
+}
+
+label[for="custom_font_New Rocker"] {
+   font-family: 'New Rocker' ;
+   font-size: 2em;
+}
+
+label[for="custom_font_Ricasso"] {
+   font-family: 'Ricasso' ;
+   font-size: 2em;
+}
+
+label[for="custom_font_AIRBORNE GP"] {
+   font-family: 'AIRBORNE GP' ;
+   font-size: 2em;
+}
+
+</style>
+
 <%= form_for(@band) do |f| %>
   <% if @band.errors.any? %>
     <div id="error_explanation">
@@ -16,17 +40,36 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-      <%= f.label :band_art %><br />
+      <%= f.label :band_Banner_Image %><br />
       <%= f.file_field :band_art %>
   </div>
   <div class="field">
       <%= f.label :Page_Background %><br />
       <%= f.file_field :custom_background %>
   </div>
+  
+  <div class ="field">
+  <%= f.radio_button :custom_font, 'Roboto Slab', :checked => true %> 
+  <%= label :custom_font, 'Roboto Slab' %>
+</div>
+<div class="radio" style="font-family: Roboto Slab; font-size: 2em"><%= @band.name %></div><br>
+  <div class ="field">
+  <%= f.radio_button :custom_font, 'New Rocker' %>
+  <%= label :custom_font, 'New Rocker' %>
+</div>
+  <div class="radio" style="font-family: New Rocker; font-size: 2em"><%= @band.name %></div><br>
+  <div class ="field">
+  <%= f.radio_button :custom_font, 'Ricasso' %>
+  <%= label :custom_font, 'Ricasso' %>
+</div>
+  <div class="radio" style="font-family: Ricasso; font-size: 2em"><%= @band.name %></div><br>
   <div class="field">
-    <%= f.label :Font %><br />
-    <%= f.text_field :custom_font %>
+  <%= f.radio_button :custom_font, 'AIRBORNE GP' %>
+  <%= label :custom_font, 'AIRBORNE GP' %>
   </div>
+  <div class="radio" style="font-family: AIRBORNE GP; font-size: 2em"><%= @band.name %></div><br>
+  <div class="field">
     <%= f.submit %>
   </div>
 <% end %>
+

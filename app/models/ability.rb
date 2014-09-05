@@ -16,6 +16,8 @@ class Ability
       can :create, Album if user.band 
       can :create, Band
       can :create, Song
+      can :edit, User
+      can :update, User
 
       can :manage, Playlist do |playlist|
         playlist && playlist.user == user
@@ -35,6 +37,10 @@ class Ability
 
       can :manage, Comment do |comment|
         comment.user_id  == user.id
+      end
+
+      can :destroy, Comment do |comment|
+        Song.find(comment.commentable_id).album.band.user == user
       end
 
     else

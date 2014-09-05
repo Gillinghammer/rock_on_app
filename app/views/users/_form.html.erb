@@ -11,17 +11,21 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+      <%= f.label :Profile_Image %><br />
+      <%= f.file_field :avatar %>
+  </div>
   <div class="field">
     <%= f.text_field :name, placeholder: "Name" %>
   </div>
   <div class="field">
-
     <%= f.text_field :email, placeholder: "Email"  %>
   </div>
   <div class="field">
-      <%= f.label :Profile_Image %><br />
-      <%= f.file_field :avatar %>
+    <%= f.text_field :hometown, placeholder: "Hometown"  %>
+  </div>
+  <div class="field">
+    <%= f.text_area :bio, placeholder: "Short summary"  %>
   </div>
   <div class="field">
     <%= f.password_field :password, placeholder: "Password"  %>

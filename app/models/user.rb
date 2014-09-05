@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessible :email, :hometown, :name, :role, :password, :password_confirmation, :avatar, :band
+  attr_accessible :email, :hometown, :name, :role, :password, :password_confirmation, :avatar, :band, :bio
 
   has_many :playlists, dependent: :destroy
   has_one :band, dependent: :destroy

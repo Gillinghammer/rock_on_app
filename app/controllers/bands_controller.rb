@@ -25,7 +25,7 @@ class BandsController < ApplicationController
 
        respond_to do |format|
          if @band.update_attributes(params[:band])
-           format.html { redirect_to @band, notice: 'Band was successfully updated.' }
+           format.html { redirect_to user_path(@band.user), notice: 'Band was successfully updated.' }
            format.json { head :no_content }
          else
            format.html { render action: "edit" }

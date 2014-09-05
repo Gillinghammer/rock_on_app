@@ -1,7 +1,7 @@
 class Song < ActiveRecord::Base
   attr_accessible :album_id, :name, :track, :playlist_id
   belongs_to :album
-  has_and_belongs_to_many :playlist
+  has_and_belongs_to_many :playlists
 
   acts_as_commentable
   

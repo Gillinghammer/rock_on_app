@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <h2><%= @song.album.try :name %></h2>
+  <h2><%= link_to @song.album.name, band_album_path(@band, @album) %></h2>
   <h3><%= @song.name %></h3>
   <%= audio_tag(@song.track, autoplay: false, controls: true) %></audio>
 
@@ -18,7 +18,7 @@
     <h4><%= User.find(comment.user_id).name %> wrote: </h4>
     <h4><%= comment.body %></h4>
     <h4><%= (comment.created_at).strftime("%m/%d/%Y")  %></h4>
-    <%= button_to 'Flag as innapropriate', {:controller => "reports", :action => "create", :comment_id => comment.id, :user_id=> session[:user_id] , :song_id=> @song.id} , :method=>:post  %>
+    <%= button_to 'Flag as innapropriate', {:controller => "reports", :action => "create", :comment_id => comment.id, :user_id=> session[:user_id] , :song_id=> @song.id} , :method=>:post  %><br>
     <%= button_to "Delete Comment", [@band, @album, @song, comment], :method => :delete,:confirm=>'Are you sure?' if current_user && current_user.id == comment.user_id %>
 
     
@@ -29,7 +29,4 @@
     <% end %>
 
   </div>
-
-  <%= link_to 'Edit', edit_band_album_song_path(@band, @album, @song) %> |
-  <%= link_to 'Back', band_album_songs_path(@band, @album) %>
 </div>

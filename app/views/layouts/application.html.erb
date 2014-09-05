@@ -5,238 +5,304 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
+  <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/airborne" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/ricasso" rel="stylesheet" type="text/css"/>
+  <link href='http://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
   <style type="text/css">
-      
-      body {
-        background-color: #F2F2F2;
-        font-family: 'Roboto Slab', serif;
-      }
 
-    .band {
-      width: 100%;
-      height: 350px;
-      overflow: hidden;
-    }
+  body {
+    background-color: #F2F2F2;
+    font-family: 'Roboto Slab', serif;
+  }
 
-    .band img {
-      width: 100%;
-      height: 100%;
-      margin: 0px 0 0 0px; 
-    }
+  .band a {
+    color: #BF0404;
+    text-decoration: none;
+  }
 
-    .wrapper {
-      padding: 70px 0px;
-      margin: 0 auto;
-      max-width: 850px;
-      min-width: 850px;
-    }
+.band h2 {
+  color: #BF0404;
+}
 
-    .RecentAlbums {
-      position: relative;
-      color: #333333;
-      max-width: 850px;
-      min-width: 850px;
-    }
+  .band img {
+    width: 100%;
+  }
 
-    .RecentAlbums .album  {
-      position: relative;
-      display: inline-block;
-      padding: 0 25px 25px 0;
-    }
+  .wrapper {
+    padding: 70px 0px;
+    margin: 0 auto;
+    max-width: 850px;
+    min-width: 850px;
+  }
 
-    .albumpage {
-      padding-top: 70px;
-    }
-
-    .songs {
-      padding-left: 50px;
-      vertical-align: top;
-      display: inline-block;
-      position: relative;
-    }
-
-    .songs h3 {
-      margin:0;
-      padding: 0;
-    }
-
-    .song {
-      display: block;
-      padding-bottom: 25px;
-      font-size: 1.2em;
-    }
-
-    .song a {
-      padding: 5px 20px 0 0;
-      text-decoration: none;
-      color: #BF0404;
-    }
-
-    .song .links a {
-     float: right;
-     padding-right: 0;
-     padding-left: 20px;
-    }
-
-    .album {
-      vertical-align: top;
-      display: inline-block;
-      position: relative;
-      text-align: center;
-
-    }
-
-       .album img {
-          width: 230px;
-          border: 5px solid black;
-        }
-
-     .album a:hover img {
-
-      border: 5px solid #a9a9a9;
-    }
-
-    .profile_image img {
-      width: 250px;
-    }
-
-    h1, h2 {
-      font-weight: 700;
-      color: #333333;
-    }
-
-    h2 a:visited {
-      text-decoration: none;
-      color: #333333;
-    }
-
-    h2 a {
-    text-decoration: none; 
+  .RecentAlbums {
+    position: relative;
     color: #333333;
-    }
+    max-width: 850px;
+    min-width: 850px;
+  }
 
-    footer {
-      z-index: 10;
-      min-height: 40px;
-      color: #F2F2F2;
-      background-color: #333333;
-      width: 100%;
-      bottom: 0;
-      position: fixed;
-      padding-left: 20px;
-    }
+  .RecentAlbums .album  {
+    position: relative;
+    display: inline-block;
+    padding: 0 25px 25px 0;
+  }
 
-    footer a {
-      color: #F2F2F2;
-      font-style: italic;
-      font-size: .7em;
-      padding-left: .5em;
-    }
-    footer a:visited {
-      color: #F2F2F2;
-      font-style: italic;
-      font-size: .7em;
-      padding-left: .5em;
-    }
+  .albumpage {
+    padding-top: 70px;
+  }
 
-    header {
-      width: 100%;
-      height: 50px;
-      background-color: #BF0404;
-      border-bottom: 5px solid black;
-      position: fixed;
-      z-index: 10;
-    }
-    nav {
-      margin: 0 auto;
-      max-width: 850px;
-      position: relative;
-    }
+  .songs {
+    padding-left: 50px;
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+  }
 
-    nav a {
-     color: #F2F2F2;
-      font-size: 1em;
-      text-decoration: none;
-    }
+  .songs h3 {
+    margin:0;
+    padding: 0;
+  }
 
-    nav a:visited {
-      color: #F2F2F2;
-      text-decoration: none;
-    }
+  .song {
+    display: block;
+    padding-bottom: 25px;
+    font-size: 1.2em;
+  }
 
-    nav a:hover {
-      color: #333333;
-      
-    }
+  .song a {
+    padding: 5px 20px 0 0;
+    text-decoration: none;
+    color: #BF0404;
+  }
 
-    .navigation{
-      padding-top: 15px;
-      display: inline-block;
-      height: 100%;
-    }
-    .navigation ul, li {
-      display: inline;
-      margin: 0;
-      padding: 0 50px 0 0;
-      vertical-align: middle;
-    }
+  .song .links a {
+   float: right;
+   padding-right: 0;
+   padding-left: 20px;
+ }
 
-    h4.flag {
-      color: #BF0404;
-    }
+ .album {
+  vertical-align: top;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  max-width: 250px;
+}
 
-    textarea {
-      height: 100px;
-      width: 295px;
-    }
+.album img {
+  width: 230px;
+  border: 5px solid black;
+}
+
+.album a:hover img {
+  border: 5px solid #a9a9a9;
+}
+
+.album a {
+  color: #BF0404;
+}
+
+.user h3 a {
+  color: #BF0404;
+  text-decoration: none;
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+}
+
+.profile .profile_image {
+  position: relative;
+  text-align: left;
+  display: inline-block;
+}
+
+.profile_image img {
+  width: 250px;
+}
+.profile .bio {
+  display: inline-block;
+  position: relative;
+}
+
+.playlist a {
+  color: #BF0404;
+  text-decoration: none;
+}
+
+.playlist h4 {
+  margin: 0;
+  padding: 0 0 10px 0;
+}
+
+.playlist i {
+  color: #BF0404;
+  padding-right: 20px;
+}
+
+form .field {
+  padding: 0 0 20px 0;
+}
+
+h1, h2 {
+  font-weight: 700;
+  color: #333333;
+}
+
+h2 a:visited {
+  text-decoration: none;
+  color: #333333;
+}
+
+h2 a {
+  text-decoration: none; 
+  color: #333333;
+}
+
+footer {
+  z-index: 10;
+  min-height: 40px;
+  color: #F2F2F2;
+  background-color: #333333;
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+  padding-left: 20px;
+}
+
+footer a {
+  color: #F2F2F2;
+  font-style: italic;
+  font-size: .7em;
+  padding-left: .5em;
+}
+footer a:visited {
+  color: #F2F2F2;
+  font-style: italic;
+  font-size: .7em;
+  padding-left: .5em;
+}
+
+header {
+  width: 100%;
+  height: 50px;
+  background-color: #BF0404;
+  border-bottom: 5px solid black;
+  position: fixed;
+  z-index: 10;
+}
+nav {
+  margin: 0 auto;
+  max-width: 850px;
+  position: relative;
+}
+
+nav a {
+ color: #F2F2F2;
+ font-size: 1em;
+ text-decoration: none;
+}
+
+nav a:visited {
+  color: #F2F2F2;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #333333;
+
+}
+
+.navigation{
+  padding-top: 15px;
+  display: inline-block;
+  height: 100%;
+}
+.navigation ul, li {
+  display: inline;
+  margin: 0;
+  padding: 0 50px 0 0;
+  vertical-align: middle;
+}
+
+h4.flag {
+  color: #BF0404;
+}
+
+textarea {
+  height: 100px;
+  width: 295px;
+}
+
+form input {
+  
+  padding: 5px 5px;
+
+}
+
+form input[type="radio"] {
+  margin: 0;
+  padding: 0;
+}
+
+form .radio {
+  color: #BF0404;
+  padding-left: 50px;
+}
+
+div.moderate {
+  display: block;
+  
+}
 
 @media (max-width: 1130px) {
-       .search {
-          display: none;
+ .search {
+  display: none;
 
-        }
-        .PopularSongs {
-          display: none;
+}
+.PopularSongs {
+  display: none;
 
-        }
+}
 
-      }
+}
 
-      @media (min-width: 1130px) {
-             .search {
-                display: inline-block;
-                position: relative;
-                padding-left: 90px;
-              }
+@media (min-width: 1130px) {
+ .search {
+  display: inline-block;
+  position: relative;
+  padding-left: 50px;
+}
 
-              .search input[type=text] {
-                 width: 200px;
-               }
+.search input[type=text] {
+ width: 200px;
+}
 
-              .PopularSongs {
-                color: #333333;
-                position: absolute;
-                font-size: 1.2em;
-                top: 70px;
-                right: 30px;
-                max-width: 200px;
-                text-align: right;
-              }
-              .PopularSongs a {
-                text-decoration: none;
-                color: #BF0404;
-              }
-              .PopularSongs i {
-                padding-left: 10px;
-              }
+.PopularSongs {
+  color: #333333;
+  position: absolute;
+  font-size: 1.2em;
+  top: 70px;
+  right: 30px;
+  max-width: 200px;
+  text-align: right;
+}
+.PopularSongs a {
+  text-decoration: none;
+  color: #BF0404;
+}
+.PopularSongs i {
+  padding-left: 10px;
+}
 
-            }
+}
 
-  </style>
+</style>
 </head>
 <body>
   <header>
@@ -267,17 +333,17 @@
         </ul>
       </div>
       <div class="search">
-            <%= search_form_for @q do |f| %>
-                <%= f.text_field :name_cont, :placeholder => "Search Bands" %> 
-                <%= f.submit %>
-            <% end %>
+        <%= search_form_for @q do |f| %>
+        <%= f.text_field :name_cont, :placeholder => "Search Bands" %> 
+        <%= f.submit %>
+        <% end %>
       </div>
     </nav>
   </header>
-<%= yield %>
+  <%= yield %>
 
-<footer>
-  <% flash.each do |name, msg| %>
+  <footer>
+    <% flash.each do |name, msg| %>
     <div class="flash-message flash-message-<%= name %>">
       <%= msg %>
     </div>
@@ -285,6 +351,6 @@
     <% if current_user %>
     <p><%= current_user.name %> you're logged in. <%= link_to '[ Logout ]', logout_path %></p>
     <% end %>
-</footer>
+  </footer>
 </body>
 </html>

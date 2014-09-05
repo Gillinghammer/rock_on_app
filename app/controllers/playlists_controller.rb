@@ -16,7 +16,7 @@ class PlaylistsController < ApplicationController
   def create
     @playlist = current_user.playlists.new (params[:playlist])
     if @playlist.save
-      redirect_to playlists_path, notice: "Playlist created"
+      redirect_to user_path(@playlist.user), notice: "Playlist created"
     else
       render "new"
     end
